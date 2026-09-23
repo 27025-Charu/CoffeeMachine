@@ -45,6 +45,28 @@ namespace CoffeeMachine.View
                 Strength = strength,
                 Name = type,
             };
+
+            Console.WriteLine(@$"CONFIRMATION: 
+COFFEE TYPE: {type}
+COFFEE STRENGTH: {strength}
+COFFEE SIZE: {size}
+Check once [Press Y/N]:");
+
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            Console.WriteLine();
+
+            switch (key.Key)
+            {
+                case ConsoleKey.Y:
+                    Console.WriteLine("\nOrder confirmed!");
+                    break;
+                case ConsoleKey.N:
+                default:
+                    Console.WriteLine("\nOrder cancelled by user.");
+                    this.ExitApplication();
+                    return;
+            }
+
             Console.WriteLine($"\nStarting preparation for {coffee.Name}...");
             foreach (var step in coffee.CoffeePreparationList)
             {
